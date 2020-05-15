@@ -2,7 +2,7 @@
 
 if [ $# != 1 ]; then
     echo "usage: sh meditate.sh <lisp implementation>"
-    echo "       lisp implementation: one of abcl, ccl, clisp, ecl, or sbcl"
+    echo "       lisp implementation: one of abcl, ccl, clisp, ecl, or sbcl, ros"
     exit
 fi
 
@@ -22,6 +22,9 @@ choose_command_line() {
         ;;
         'sbcl' )
             echo "sbcl --script contemplate.lisp"
+        ;;
+        'ros' )
+            echo "ros contemplate.lisp"
         ;;
         * )
             echo ""
