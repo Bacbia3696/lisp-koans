@@ -50,7 +50,23 @@
 ;;; Your goal is to write the scoring function for Greed.
 
 (defun score (&rest dice)
-  ____)
+  (let
+      ((total-score 0)
+       (count-1 (count 1 dice))
+       (count-2 (count 2 dice))
+       (count-3 (count 3 dice))
+       (count-4 (count 4 dice))
+       (count-5 (count 5 dice))
+       (count-6 (count 6 dice)))
+    (cond
+      ((>= count-1 3) (incf total-score 1000))
+      ((>= count-6 3) (incf total-score 600))
+      ((>= count-5 3) (incf total-score 500))
+      ((>= count-4 3) (incf total-score 400))
+      ((>= count-3 3) (incf total-score 300))
+      ((>= count-2 3) (incf total-score 200)))
+    (incf total-score (* 100 (if (>= count-1 3) (- count-1 3) count-1)))
+    (incf total-score (* 50 (if (>= count-5 3) (- count-5 3) count-5)))))
 
 (define-test score-of-an-empty-list-is-zero
   (assert-equal 0 (score)))
